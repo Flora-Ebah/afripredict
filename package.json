@@ -1,0 +1,24 @@
+{
+  "name": "afripredict",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AFRIPREDICT — African prediction market POC (virtual credits, simulation only)",
+  "scripts": {
+    "dev": "concurrently -n api,web,worker -c blue,green,yellow \"pnpm --filter @afripredict/api dev\" \"pnpm --filter @afripredict/web dev\" \"pnpm --filter @afripredict/worker dev\"",
+    "dev:api": "pnpm --filter @afripredict/api dev",
+    "dev:web": "pnpm --filter @afripredict/web dev",
+    "dev:worker": "pnpm --filter @afripredict/worker dev",
+    "build": "pnpm -r build",
+    "db:push": "pnpm --filter @afripredict/api db:push",
+    "db:seed": "pnpm --filter @afripredict/api db:seed",
+    "db:generate": "pnpm --filter @afripredict/api db:generate",
+    "test": "pnpm --filter @afripredict/api test",
+    "test:e2e": "node scripts/e2e.mjs"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

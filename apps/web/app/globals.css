@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------------------------------
+   Charte AfriPredict — variables (modifiable à chaud, sans redémarrage)
+--------------------------------------------------------------------------- */
+:root {
+  /* Terracotta */
+  --terra-50: #fbf4ef;
+  --terra-100: #f6e4d9;
+  --terra-200: #eec8b3;
+  --terra-300: #e5a17b;
+  --terra-400: #e07a52; /* Light — Hover / Accent */
+  --terra-500: #d2663c;
+  --terra-600: #c4552d; /* Principal */
+  --terra-700: #9b3a1f; /* Dark — Active */
+  --terra-800: #7a2e18;
+  --terra-900: #571f10;
+
+  /* Gris */
+  --gris-100: #f7f7f7; /* Fond secondaire */
+  --gris-200: #ededed; /* Surface / Bordures */
+  --gris-400: #9ca3af; /* Texte secondaire */
+  --gris-700: #374151; /* Texte principal */
+  --gris-900: #111827; /* Titres */
+
+  /* Fond du footer = fond exact de logo2.png pour fusion parfaite */
+  --footer-bg: #1e242d;
+
+  /* Surfaces */
+  --bg-body: #ffffff;
+  --surface: #ffffff;
+
+  /* Rayons (modifiables à chaud) */
+  --radius: 12px;
+  --radius-lg: 14px;
+}
+
+/* ------------------------------ Mode sombre ------------------------------ */
+html.dark {
+  --bg-body: #0f141b;
+  --surface: #1e242d; /* = fond de logo2.png : le logo sombre s'y fond parfaitement */
+
+  --gris-100: #1b222e; /* fond secondaire / cards */
+  --gris-200: #262f3d; /* surfaces / bordures */
+  --gris-400: #8b93a1; /* texte secondaire */
+  --gris-700: #c2c9d4; /* texte principal */
+  --gris-900: #f1f3f7; /* titres */
+
+  --terra-50: #2b1a12; /* teintes claires -> teintes sombres */
+  --terra-100: #3b2115;
+}
+
+/* Logo : version claire / version sombre selon le thème */
+.logo-dark {
+  display: none;
+}
+html.dark .logo-light {
+  display: none;
+}
+html.dark .logo-dark {
+  display: block;
+}
+
+/* La police Plus Jakarta Sans est chargée via next/font dans layout.tsx */
+body {
+  @apply text-[color:var(--gris-700)] antialiased;
+  background: var(--bg-body);
+}
+
+h1, h2, h3, h4 {
+  color: var(--gris-900);
+}
+
+@layer components {
+  /* Cards : sans bordure, sans ombre, fond gris clair (charte) */
+  .card {
+    @apply rounded-md;
+    background: var(--gris-100);
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-1.5 rounded px-3 py-1.5 text-sm font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  /* Bouton principal : terracotta, hover clair, actif foncé (charte) */
+  .btn-primary {
+    @apply btn text-white bg-terra-600 hover:bg-terra-400 active:bg-terra-700;
+  }
+  .btn-secondary {
+    @apply btn text-white bg-terra-600 hover:bg-terra-400 active:bg-terra-700;
+  }
+  .btn-success {
+    @apply btn bg-success text-white hover:bg-green-700;
+  }
+  .btn-danger {
+    @apply btn bg-danger text-white hover:bg-red-700;
+  }
+  /* Bouton secondaire (charte) : gris clair */
+  .btn-outline {
+    @apply btn text-[color:var(--gris-700)] bg-[color:var(--gris-200)] hover:bg-[color:var(--gris-100)];
+  }
+  /* Bouton ghost (charte) : contour terracotta */
+  .btn-ghost-terra {
+    @apply btn text-terra-600 ring-1 ring-terra-600 bg-transparent hover:bg-terra-50 active:text-terra-700;
+  }
+  /* Bouton icône neutre (header) */
+  .btn-ghost {
+    @apply btn text-[color:var(--gris-400)] hover:bg-[color:var(--gris-100)] hover:text-[color:var(--gris-900)];
+  }
+
+  .input {
+    @apply w-full rounded px-3 py-2 text-sm font-medium outline-none ring-1 ring-[color:var(--gris-200)] focus:ring-2 focus:ring-terra-400 placeholder:text-[color:var(--gris-400)] text-[color:var(--gris-900)];
+    background: var(--surface);
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-bold;
+  }
+}

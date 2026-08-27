@@ -1,0 +1,15 @@
+{
+  "name": "@afripredict/worker",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "tsx watch src/simulator.ts",
+    "start": "tsx src/simulator.ts",
+    "build": "tsc -p tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3",
+    "@types/node": "^22.10.2"
+  }
+}

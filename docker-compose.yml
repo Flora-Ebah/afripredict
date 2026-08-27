@@ -1,0 +1,31 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: afripredict-postgres
+    environment:
+      POSTGRES_USER: afripredict
+      POSTGRES_PASSWORD: afripredict
+      POSTGRES_DB: afripredict
+    ports:
+      - "5436:5432"
+    volumes:
+      - afripredict_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U afripredict"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    container_name: afripredict-redis
+    ports:
+      - "6382:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  afripredict_pgdata:
